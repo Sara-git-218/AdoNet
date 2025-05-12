@@ -13,10 +13,10 @@ namespace AdoNet
             string connectionString = " Data Source = SRV2\\PUPILS; Initial Catalog = 326059268_ShopApi; Integrated Security = True; Trust Server Certificate = True";
 
             DataAcces dataAcces = new DataAcces();
-            //int v =dataAcces.InsertDataProd(connectionString);
-            //dataAcces.readDataProd(connectionString);
-            int a = dataAcces.InsertDataCatgory(connectionString);
-            dataAcces.readDataCatgory(connectionString);
+            int v = dataAcces.InsertDataProd(connectionString);
+            dataAcces.readDataProd(connectionString);
+            //int a = dataAcces.InsertDataCatgory(connectionString);
+            //dataAcces.readDataCatgory(connectionString);
         }
     }
 }

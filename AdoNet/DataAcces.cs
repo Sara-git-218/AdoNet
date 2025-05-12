@@ -14,6 +14,10 @@ namespace AdoNet
 
         internal int InsertDataProd(string connectionString)
         {
+            int rowsAffect = 0;
+            char tocontinue= 'y';
+            while(tocontinue=='y')
+            { 
             Console.WriteLine("Hello, World!");
             Console.WriteLine("enter product name");
             string product_name = Console.ReadLine();
@@ -37,32 +41,43 @@ namespace AdoNet
                 cmd.Parameters.Add("@product_Description", SqlDbType.NVarChar, 50).Value = product_Description;
                 cmd.Parameters.Add("@imageurl", SqlDbType.NVarChar, 50).Value = imageurl;
                 cn.Open();
-                int rowsAffect = cmd.ExecuteNonQuery();
+                 rowsAffect = cmd.ExecuteNonQuery();
                 cn.Close();
-                return rowsAffect;
+               
             }
+                Console.WriteLine("Do you want to continue? (y/n)");
+                tocontinue = Console.ReadLine()[0];
 
+            }
+         return rowsAffect;
         }
         internal int InsertDataCatgory(string connectionString)
         {
-            Console.WriteLine("Hello, World!");
-            Console.WriteLine("enter CatgoryName");
-            string catgory_name = Console.ReadLine();
-           
-
-            string query = "INSERT INTO Catgories(CatgoryName)" +
-                "VALUES(@catgory_name)";
-            using (SqlConnection cn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(query, cn))
+            int rowsAffect = 0;
+            char tocontinue = 'y';
+            while (tocontinue == 'y')
             {
-                cmd.Parameters.Add("@catgory_name", SqlDbType.NVarChar, 50).Value =catgory_name;
-                
-                cn.Open();
-                int rowsAffect = cmd.ExecuteNonQuery();
-                cn.Close();
-                return rowsAffect;
-            }
+                Console.WriteLine("Hello, World!");
+                Console.WriteLine("enter CatgoryName");
+                string catgory_name = Console.ReadLine();
 
+
+                string query = "INSERT INTO Catgories(CatgoryName)" +
+                    "VALUES(@catgory_name)";
+                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, cn))
+                {
+                    cmd.Parameters.Add("@catgory_name", SqlDbType.NVarChar, 50).Value = catgory_name;
+
+                    cn.Open();
+                    rowsAffect += cmd.ExecuteNonQuery();
+                    cn.Close();
+                   
+                }
+                Console.WriteLine("Do you want to continue? (y/n)");
+                tocontinue =Console.ReadLine()[0];
+            }
+ return rowsAffect;
         }
         internal void readDataProd(string connectionString)
         {
